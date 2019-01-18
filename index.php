@@ -6,21 +6,15 @@
         <title>CANETA</title>
     </head>
     <body>
-        <?php
-        require_once './Caneta.php';
-
-        $caneta1 = new Caneta();
-        $caneta1->cor = "azul";
-        $caneta1->modelo = "BIC";
-        
-       
-
-        $caneta1->tampar();
-        $caneta1->rabiscar();
-
-        echo "<br><br>";
-
-        print_r($caneta1);
-        ?>
+        <pre>
+            <?php
+            require_once './ContaBanco.php';
+            
+            $cliente = new ContaBanco(123, "CC", "MURILO");
+            $cliente->abrirConta("CP");
+            
+            print_r($cliente);
+            ?>
+        </pre>
     </body>
 </html>
