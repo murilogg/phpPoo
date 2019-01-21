@@ -1,23 +1,16 @@
 <?php
 
 class ContaBanco {
-
+    // Atributos
     public $numConta;
     protected $tipo;
     private $dono;
     private $saldo;
     private $status;
-
-    function __construct($numConta, $tipo, $dono) {
-        $this->numConta = $numConta;
-        $this->tipo = $tipo;
-        $this->dono = $dono;
-        $this->saldo = 0;
-        $this->status = FALSE;
-    }
-
+    
+    // Métodos
     public function abrirConta($t) {
-        $this->setSaldo($this->tipo = $t);
+        $this->setTipo($t);
         $this->setStatus(true);
         if ($t == "CC") {
             $this->setSaldo(50);
@@ -27,25 +20,56 @@ class ContaBanco {
     }
 
     public function fecharConta() {
-        if ($this->setSaldo > 0) {
+        if ($this->getSaldo() > 0) {
             echo "Conta com Dinheiro";
-        } else if ($this->setSaldo < 0) {
+        } else if ($this->getSaldo() < 0) {
             echo "Conta em Debito";
         } else {
-            $this->setSaldo(FALSE);
+            $this->setStatus(FALSE);
+            echo "<p>Conta ".$this->getDono()." Fechada com sucesso </p>";
         }
     }
 
-    public function deposito() {
-        
+    public function deposito($v) {
+        if($this->getStatus()){
+            $this->setSaldo($this->getSaldo() + $v);
+            echo "<p>Deposito de $v Realizado na conta " . $this->getDono()." </p>";
+        } else {
+            echo "Conta fechada, Não consigo depositar ! ";
+        }
     }
 
-    public function sacar() {
-        
+    public function sacar($v) {
+        if($this->getStatus()){
+            if($this->getSaldo() >= $v){
+                $this->setSaldo($this->getSaldo() - $v);
+                echo "<p>Saque de $v Realizado com sucesso na conta ".$this->getDono()."</p>";
+            }else{
+                echo "Conta está sem saldo, para Saque";
+            }
+        }else{
+            echo "Não posso sacar de uma conta Fechada";
+        }
     }
 
     public function pagarMensal() {
-        
+        if($this->getTipo() == "CC"){
+            $v = 12;
+        } else if($this->getTipo() == "CP"){
+            $v = 20;
+        }
+        if($this->getStatus()){
+            $this->setSaldo($this->getSaldo() - $v);
+        }else {
+            echo "Problemas com a conta, Não posso cobrar ! ";
+        }
+    }
+    
+    //Metodos especiais 
+    function __construct() { 
+        $this->setSaldo(0);
+        $this->setStatus(false);
+        echo "<br>Conta criada com sucesso !! <br>";
     }
 
     function getNumConta() {
