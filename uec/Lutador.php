@@ -11,7 +11,7 @@ class Lutador {
 
     // METODOS
     function apresentar() {
-        echo "<br>|--------------------------APRESENTAÇÃO ----------------------------|<br>";
+        echo "<br><br>|--------------------------APRESENTAÇÃO ----------------------------|<br>";
         echo "CHEGOU A HORA !!!, O lutador " . $this->getNome();
         echo " Veio diretamente do Pais " . $this->getNacionalidade();
         echo " Tem " . $this->getIdade() . " anos e Pesa " . $this->getPeso() . "Kg com ".$this->getAltura()." de altura, ";
