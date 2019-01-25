@@ -8,6 +8,11 @@ class Aluno extends Pessoa{
     public function cancelarMatri(){
         echo "<p>Matricula sera cancelada</p>";
     }
+    
+    public function pagarMensalidade(){
+        echo "<p>ALUNO PAGA MENSALIDADE</P>";
+    }
+            
     function getCurso() {
         return $this->curso;
     }
